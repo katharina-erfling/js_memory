@@ -2,7 +2,7 @@
 
 # 🃏 Memory
 
-Ein browserbasiertes Memory-Spiel mit aufwendigem Casino-Design – entstanden als Praxisprojekt im Rahmen der Frontend Developer Zertifizierung JavaScript.
+Ein browserbasiertes Memory-Spiel mit aufwendigem Casino-Design.
 
 ---
 
