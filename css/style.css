@@ -34,11 +34,23 @@
   h1 {
     color: rgba(255,255,255,0.55);
     font-size: 1rem;
-    font-weight: normal;
+    font-weight: bold;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
   }
+
+  h3 {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;    
+  }
+
+
+
 
   /* Spielmatte auf dem Tisch */
   .spielfeld {
@@ -227,4 +239,149 @@
 
   .versteckt {
     visibility: hidden;
+  }
+
+
+
+  
+  /* ── Gewinnscreen ── */
+  #gewinnscreen {
+    display: none;               /* per JS: style.display = 'flex' */
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+
+    /* Vorhang: halbtransparentes Dunkel über dem Tisch */
+    background:
+      radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.72) 100%);
+
+    animation: vorhang-ein 0.6s ease both;
+  }
+
+  @keyframes vorhang-ein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Die Karte / das Panel in der Mitte */
+  .gewinn-panel {
+    background: #f5f0e8;   /* selbe Papiertönung wie Vorderseite */
+    border-radius: 16px;
+    padding: 3rem 3.5rem;
+    text-align: center;
+    max-width: 360px;
+    width: 90%;
+
+    /* selbes plastisches Schatten-System wie die Spielkarten */
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.9),
+      inset 1px 0 0 rgba(255,255,255,0.5),
+      inset 0 -1px 0 rgba(0,0,0,0.1),
+      0 12px 40px rgba(0,0,0,0.5),
+      0 4px 8px rgba(0,0,0,0.35);
+
+    animation: panel-auf 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+  }
+
+  @keyframes panel-auf {
+    from { transform: scale(0.7) translateY(30px); opacity: 0; }
+    to   { transform: scale(1)   translateY(0);    opacity: 1; }
+  }
+
+  /* Sternchen-Ornament oben */
+  .gewinn-panel::before {
+    content: '✦  ✦  ✦';
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: rgba(180,150,60,0.6);
+    margin-bottom: 1.2rem;
+  }
+
+  .gewinn-titel {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #3a2a10;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .gewinn-untertitel {
+    font-family: Georgia, serif;
+    font-size: 0.95rem;
+    color: #7a6040;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  /* Züge-Anzeige — wird per JS befüllt: document.getElementById('zuege-zahl').textContent = anzahl */
+  .gewinn-zuege {
+    display: inline-block;
+    background: #ede4cc;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    color: #5a4020;
+    margin-bottom: 2rem;
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.7),
+      inset 0 -1px 0 rgba(0,0,0,0.08);
+  }
+
+  .gewinn-zuege span {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #3a2a10;
+    display: block;
+    line-height: 1.2;
+  }
+
+  /* Trennlinie */
+  .gewinn-linie {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin: 0 0 1.8rem;
+  }
+
+  /* Nochmal-Button */
+  .gewinn-button {
+    display: inline-block;
+    background: #2d6a4f;
+    color: #c8ecd8;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 2rem;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      0 3px 8px rgba(0,0,0,0.3),
+      0 1px 2px rgba(0,0,0,0.25);
+
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .gewinn-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      0 6px 16px rgba(0,0,0,0.35),
+      0 2px 4px rgba(0,0,0,0.25);
+  }
+
+  .gewinn-button:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.1),
+      0 1px 4px rgba(0,0,0,0.3);
   }
