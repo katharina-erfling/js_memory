@@ -1,4 +1,4 @@
- * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -10,7 +10,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Holztisch-Hintergrund: warmes Braun mit Maserung */
     background-color: #6b4226;
     background-image:
       repeating-linear-gradient(
@@ -31,32 +30,101 @@
     font-family: Georgia, serif;
   }
 
-  h1 {
-    color: rgba(255,255,255,0.55);
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
+/* ── Header-Bereich ── */
+.header {
+  width: 100%;
+  background: rgba(210, 180, 120, 0.15);
+  border-top: 1px solid rgba(210,180,120,0.2);
+  border-bottom: 1px solid rgba(210,180,120,0.2);
+  padding: 1.2rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 
-  h3 {
-    color: rgba(255,255,255,0.55);
-    font-size: 1rem;
-    font-weight: normal;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;    
-  }
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 4px 20px rgba(0,0,0,0.2);
+}
 
+h1 {
+  color: rgba(255, 235, 180, 0.85);
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: normal;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
 
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.5),
+    0 0 20px rgba(220,180,80,0.3);
+}
 
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: rgba(220,180,80,0.4);
+  margin: 0.6rem auto 0;
+}
 
-  /* Spielmatte auf dem Tisch */
-  .spielfeld {
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 0;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 2rem;
+}
+
+.stat-label {
+  font-family: Georgia, serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,220,130,0.5);
+  margin-bottom: 0.15rem;
+}
+
+.stat-wert {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  color: rgba(255,235,180,0.9);
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.stat-trenner {
+  color: rgba(220,180,80,0.35);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding-bottom: 0.1rem;
+}
+
+/* ── Inhalt ── */
+.inhalt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div-flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+}
+
+/* ── Spielmatte ── */
+.spielfeld {
     background-color: #2d6a4f;
     background-image:
-      /* feines Filz-Gitter */
       repeating-linear-gradient(
         0deg,
         rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px,
@@ -70,7 +138,6 @@
     border-radius: 16px;
     padding: 2rem;
 
-    /* Tiefe: Vertiefung in den Tisch */
     box-shadow:
       inset 0 3px 10px rgba(0,0,0,0.4),
       inset 0 -2px 6px rgba(255,255,255,0.05),
@@ -78,7 +145,6 @@
       0 2px 4px rgba(0,0,0,0.4);
   }
 
-  /* 4×4 Raster */
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 120px);
@@ -92,10 +158,8 @@
     height: 120px;
     perspective: 700px;
     cursor: pointer;
-    /* leichter, individueller Liegewinkel — wird per nth-child gesetzt */
   }
 
-  /* subtile Rotationen für "hingeworfen" Effekt */
   .karte:nth-child(4n+1) { transform: rotate(-0.8deg); }
   .karte:nth-child(4n+2) { transform: rotate(0.4deg); }
   .karte:nth-child(4n+3) { transform: rotate(-0.3deg); }
@@ -103,7 +167,6 @@
   .karte:nth-child(3n+1) { transform: rotate(0.5deg) translateY(-1px); }
   .karte:nth-child(5n+2) { transform: rotate(-0.6deg) translateY(1px); }
 
-  /* 3D-Container */
   .karte-inner {
     width: 100%;
     height: 100%;
@@ -116,7 +179,6 @@
     transform: rotateY(180deg);
   }
 
-  /* Beide Seiten */
   .seite {
     position: absolute;
     inset: 0;
@@ -124,20 +186,17 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 
-    /* Plastische Tiefe: Lichtkanten + Schatten */
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.7),    /* Lichtkante oben */
-      inset 1px 0 0 rgba(255,255,255,0.35),   /* Lichtkante links */
-      inset 0 -1px 0 rgba(0,0,0,0.15),        /* Schattenkante unten */
-      inset -1px 0 0 rgba(0,0,0,0.1),         /* Schattenkante rechts */
-      0 3px 6px rgba(0,0,0,0.35),             /* Kernschatten */
-      0 8px 20px rgba(0,0,0,0.2),             /* weicher Fallschatten */
-      0 1px 2px rgba(0,0,0,0.45);             /* Kontur */
+      inset 0 1px 0 rgba(255,255,255,0.7),
+      inset 1px 0 0 rgba(255,255,255,0.35),
+      inset 0 -1px 0 rgba(0,0,0,0.15),
+      inset -1px 0 0 rgba(0,0,0,0.1),
+      0 3px 6px rgba(0,0,0,0.35),
+      0 8px 20px rgba(0,0,0,0.2),
+      0 1px 2px rgba(0,0,0,0.45);
   }
 
-  /* ── Rückseite ── */
   .rueckseite {
-    /* klassisches Diagonalmuster */
     background-color: #1a3a6e;
     background-image:
       repeating-linear-gradient(
@@ -153,7 +212,6 @@
     overflow: hidden;
   }
 
-  /* Innenrahmen auf Rückseite */
   .rueckseite::before {
     content: '';
     position: absolute;
@@ -162,25 +220,20 @@
     border-radius: 4px;
   }
 
-  /* Kleines Ornament in der Mitte */
   .rueckseite::after {
     content: '✦';
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 1.4rem;
     color: rgba(255,255,255,0.2);
     display: grid;
     place-items: center;
   }
 
-  /* ── Vorderseite ── */
   .vorderseite {
     transform: rotateY(180deg);
     background: #f0ebe0;
-    overflow: hidden; /* hält Bild in gerundeter Karte */
+    overflow: hidden;
     padding: 0;
   }
 
@@ -190,11 +243,9 @@
     object-fit: cover;
     display: block;
     border-radius: 8px;
-    /* leichter Wärme-Filter damit alle Bilder zusammenpassen */
     filter: saturate(0.9) brightness(0.97);
   }
 
-  /* Bodenschatten unter jeder Karte (auf der Matte) */
   .karte::after {
     content: '';
     position: absolute;
@@ -207,7 +258,6 @@
     pointer-events: none;
   }
 
-  /* gefundenes Paar: kurz aufleuchten */
   .karte.gefunden .seite {
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.7),
@@ -216,10 +266,9 @@
       inset -1px 0 0 rgba(0,0,0,0.1),
       0 3px 6px rgba(0,0,0,0.35),
       0 8px 20px rgba(0,0,0,0.2),
-      0 0 0 3px rgba(255,220,50,0.7);   /* goldener Ring */
+      0 0 0 3px rgba(255,220,50,0.7);
   }
 
-  /* Hover: Karte hebt sich leicht */
   .karte:not(.aufgedeckt):not(.gefunden):hover {
     transform: translateY(-4px) rotate(0deg) scale(1.03);
     transition: transform 0.15s ease;
@@ -236,24 +285,19 @@
       0 1px 2px rgba(0,0,0,0.45);
   }
 
-
   .versteckt {
     visibility: hidden;
   }
 
-
-
-  
   /* ── Gewinnscreen ── */
   #gewinnscreen {
-    display: none;               /* per JS: style.display = 'flex' */
+    display: none;
     position: fixed;
     inset: 0;
     z-index: 100;
     align-items: center;
     justify-content: center;
 
-    /* Vorhang: halbtransparentes Dunkel über dem Tisch */
     background:
       radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.72) 100%);
 
@@ -265,16 +309,14 @@
     to   { opacity: 1; }
   }
 
-  /* Die Karte / das Panel in der Mitte */
   .gewinn-panel {
-    background: #f5f0e8;   /* selbe Papiertönung wie Vorderseite */
+    background: #f5f0e8;
     border-radius: 16px;
     padding: 3rem 3.5rem;
     text-align: center;
     max-width: 360px;
     width: 90%;
 
-    /* selbes plastisches Schatten-System wie die Spielkarten */
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.9),
       inset 1px 0 0 rgba(255,255,255,0.5),
@@ -290,7 +332,6 @@
     to   { transform: scale(1)   translateY(0);    opacity: 1; }
   }
 
-  /* Sternchen-Ornament oben */
   .gewinn-panel::before {
     content: '✦  ✦  ✦';
     display: block;
@@ -318,7 +359,6 @@
     margin-bottom: 2rem;
   }
 
-  /* Züge-Anzeige — wird per JS befüllt: document.getElementById('zuege-zahl').textContent = anzahl */
   .gewinn-zuege {
     display: inline-block;
     background: #ede4cc;
@@ -328,7 +368,7 @@
     font-family: Georgia, serif;
     font-size: 1.1rem;
     color: #5a4020;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.7),
@@ -343,14 +383,12 @@
     line-height: 1.2;
   }
 
-  /* Trennlinie */
   .gewinn-linie {
     border: none;
     border-top: 1px solid rgba(0,0,0,0.1);
-    margin: 0 0 1.8rem;
+    margin: 1rem 0 1.8rem;
   }
 
-  /* Nochmal-Button */
   .gewinn-button {
     display: inline-block;
     background: #2d6a4f;
@@ -384,4 +422,117 @@
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.1),
       0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* ── Bestenliste / Notizblock ── */
+  .bestenliste {
+    align-self: flex-start;
+    margin-top: 0;
+  }
+
+  .notizblock {
+    width: 220px;
+    background: #f5f0e0;
+    border-radius: 4px 4px 8px 8px;
+    padding: 1rem 1.2rem 1.5rem;
+    position: relative;
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.8),
+      2px 3px 0 #d4c9a0,
+      4px 6px 0 #c4b890,
+      0 12px 30px rgba(0,0,0,0.4);
+
+    transform: rotate(1.2deg);
+  }
+
+  .notizblock-lochung {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    margin-top: -0.2rem;
+  }
+
+  .notizblock-lochung span {
+    width: 18px;
+    height: 18px;
+    background: #6b4226;
+    border-radius: 50%;
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.5),
+      0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .notizblock::after {
+    content: '';
+    position: absolute;
+    inset: 3.5rem 0 0;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 27px,
+      rgba(100,140,200,0.25) 27px,
+      rgba(100,140,200,0.25) 28px
+    );
+    pointer-events: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .notizblock-titel {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #5a4020;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    border-bottom: 1.5px solid rgba(100,140,200,0.35);
+    padding-bottom: 0.5rem;
+  }
+
+  .bestenliste-eintraege {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eintrag {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    color: #3a2a10;
+    padding: 4px 0;
+    line-height: 28px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .eintrag .rang {
+    font-weight: 700;
+    color: #7a6040;
+    min-width: 18px;
+  }
+
+  .eintrag .wert {
+    color: #2d6a4f;
+    font-weight: 600;
+  }
+
+  .eintrag.leer {
+    color: #a0906a;
+    font-style: italic;
+    justify-content: center;
+  }
+
+  .notizblock-titel::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 3.2rem;
+    bottom: 1rem;
+    width: 1.5px;
+    background: rgba(200,80,80,0.35);
+    z-index: 1;
   }

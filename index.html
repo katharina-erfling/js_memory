@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +9,43 @@
     <title>Memory</title>
 </head>
 <body>
-    
-    
-<h1>Memory</h1>
-<h3>Züge: <span id="zuege">-</span></h3>
-<h3>Zeit: <span id="timer">0:00</span></h3>
 
-<div class="spielfeld">
-  <div class="grid" id="grid">
-
-  
-
+<div class="header">
+  <h1>Memory</h1>
+  <div class="stats">
+    <div class="stat-block">
+      <span class="stat-label">Züge</span>
+      <span class="stat-wert" id="zuege">—</span>
+    </div>
+    <span class="stat-trenner">✦</span>
+    <div class="stat-block">
+      <span class="stat-label">Zeit</span>
+      <span class="stat-wert" id="timer">0:00</span>
+    </div>
   </div>
 </div>
 
+<div class="inhalt">
+  <div class="div-flex">
+
+    <div class="spielfeld">
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <div class="bestenliste">
+      <div class="notizblock">
+        <div class="notizblock-lochung">
+          <span></span><span></span><span></span>
+        </div>
+        <h2 class="notizblock-titel">Bestenliste</h2>
+        <ol class="bestenliste-eintraege" id="bestenliste-eintraege">
+          <li class="eintrag leer">Noch keine Einträge</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div id="gewinnscreen">
   <div class="gewinn-panel">
@@ -30,9 +53,8 @@
     <p class="gewinn-untertitel">Alle Paare gefunden</p>
     <div class="gewinn-zuege">Züge:
       <span id="zuege-zahl">—</span>
-      
     </div>
-        <div class="gewinn-zuege">Zeit:
+    <div class="gewinn-zuege">Zeit:
       <span id="timer_ende">0:00</span>
     </div>
     <hr class="gewinn-linie">

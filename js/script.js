@@ -157,6 +157,40 @@ let sekunden = 0;           // Verstrichene Zeit in Sekunden
 
 
 
+
+
+
+
+
+
+/*/////////////////////// */
+ // -- Bestenliste  -- //
+/*/////////////////////// */
+
+
+let eintraege;
+
+if (localStorage.getItem('bestenliste') === null) {
+    eintraege = [];
+} else {
+    eintraege = JSON.parse(localStorage.getItem('bestenliste'));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*/////////////////////// */
   // -- Spiel -- //
 /*/////////////////////// */
