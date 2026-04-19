@@ -1,4 +1,4 @@
-<img width="1144" height="720" alt="Screenshot 2026-04-19 100751" src="https://github.com/user-attachments/assets/1fd661b4-704e-4d44-ae5e-9e9491f52012" />
+<img width="1309" height="770" alt="Screenshot 2026-04-19 201516" src="https://github.com/user-attachments/assets/0e3106fc-29c8-41b0-bd93-c02983cafb63" />
 
 # 🃏 Memory
 
@@ -16,13 +16,19 @@ Ein browserbasiertes Memory-Spiel mit aufwendigem Casino-Design.
 
 > 🔒 **Sperrmechanismus** – `gesperrt`-Flag verhindert dass während der Auflöseanimation weitere Karten geklickt werden können
 
-> 🃏 **Dynamischer Kartenaufbau** – alle Karten werden per `createElement` aus dem Bilder-Array generiert, kein HTML hardcoded
+> 🐾 **Emoji-Konfetti mit abnehmender Dichte** – Hunde-Emojis fliegen 15 Sekunden lang aus beiden Seiten, die Teilchenanzahl nimmt dabei proportional zur verbleibenden Zeit ab
+
+> ⏱️ **Live-Timer & Zugzähler** – Timer startet beim ersten Klick, beide Werte werden live im Spielfeld und im Gewinnscreen angezeigt
+
+> 🔊 **Sound-Feedback** – Kartengeräusch, Treffer-Sound und Gewinn-Sound – Sounds werden per `new Audio()` bei jedem Klick neu erstellt damit sie sich überlappen können
+
+> 🏆 **Gewinnscreen mit Animation** – Panel fährt per `cubic-bezier` federnd herein, zeigt Züge und Endzeit an
 
 ---
 
 ## 🎮 Spielablauf
 
-Karten aufdecken – finde alle Paare! Zwei aufgedeckte Karten die nicht übereinstimmen werden nach kurzer Zeit wieder umgedreht. Gefundene Paare verschwinden.
+Karten aufdecken – finde alle 8 Paare! Zwei aufgedeckte Karten die nicht übereinstimmen werden nach kurzer Zeit wieder umgedreht. Gefundene Paare verschwinden. Timer und Züge werden mitgezählt.
 
 ---
 
@@ -31,13 +37,20 @@ Karten aufdecken – finde alle Paare! Zwei aufgedeckte Karten die nicht überei
 ```
 /
 ├── index.html
-├── script.js
 ├── css/
 │   └── style.css
-└── images/
-    ├── 1.png
-    ├── 2.png
-    └── ...
+├── js/
+│   ├── script.js
+│   └── confetti.js
+├── images/
+│   ├── 1.png
+│   ├── 2.png
+│   └── ...
+└── sounds/
+    ├── card.mp3
+    ├── correct.mp3
+    ├── wrong.mp3
+    └── win.mp3
 ```
 
 ---
@@ -45,11 +58,7 @@ Karten aufdecken – finde alle Paare! Zwei aufgedeckte Karten die nicht überei
 ## 🛠️ Technologien
 
 - **HTML5** – semantisches Markup
-- **CSS3** – `transform-style: preserve-3d`, `backface-visibility`, `rotateY`, `repeating-linear-gradient`, `inset box-shadow`, `nth-child`, `perspective`, `cubic-bezier`, CSS Custom Properties
-- **JavaScript (ES6+)** – Fisher-Yates Shuffle, `createElement`, `classList`, `setTimeout`, Event Listener, Spread/Concat für Paare
+- **CSS3** – `transform-style: preserve-3d`, `backface-visibility`, `rotateY`, `repeating-linear-gradient`, `inset box-shadow`, `nth-child`, `perspective`, `cubic-bezier`, Keyframe-Animationen
+- **JavaScript (ES6+)** – Fisher-Yates Shuffle, `createElement`, `classList`, `setTimeout`, `setInterval`, `clearInterval`, Event Listener, `Audio`, `confetti`-Library, Spread Operator
 
----
 
-## 📚 Kontext
-
-Teil der **Softwareentwicklerin Frontend Javascript Zertifizierung** bei GFN (extern zertifiziert durch WPI), März – Juni 2026.
