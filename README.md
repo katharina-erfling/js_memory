@@ -1,4 +1,4 @@
-<img width="1309" height="770" alt="Screenshot 2026-04-19 201516" src="https://github.com/user-attachments/assets/0e3106fc-29c8-41b0-bd93-c02983cafb63" />
+<img width="1405" height="836" alt="Screenshot 2026-04-20 134404" src="https://github.com/user-attachments/assets/f06fc3a9-8900-436f-b44a-c800d6257aae" />
 
 # 🃏 Memory
 
