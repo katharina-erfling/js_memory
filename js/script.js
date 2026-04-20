@@ -168,13 +168,49 @@ let sekunden = 0;           // Verstrichene Zeit in Sekunden
 /*/////////////////////// */
 
 
-let eintraege;
+const score = () => {
+    let eintraege;
 
-if (localStorage.getItem('bestenliste') === null) {
-    eintraege = [];
-} else {
-    eintraege = JSON.parse(localStorage.getItem('bestenliste'));
+    if (localStorage.getItem('bestenliste') === null) {
+        eintraege = [];
+    } else {
+        eintraege = JSON.parse(localStorage.getItem('bestenliste'));
+    }
+
+    eintraege.push({ zuege, sekunden});
+
+    eintraege.sort((a, b) => a.zuege - b.zuege);
+
+    eintraege = eintraege.slice(0, 5);
+
+    localStorage.setItem('bestenliste', JSON.stringify(eintraege));
+
+    $('#bestenliste-eintraege').innerHTML = ''; // alter Inhalt löschen damit nicht doppelt
+    
+};
+
+const bestenlisteAnzeigen = () => {
+    const gespeichert = localStorage.getItem('bestenliste');
+    if (gespeichert === null) return; // nichts da, nichts anzeigen
+    
+    const eintraege = JSON.parse(gespeichert);
+    $('#bestenliste-eintraege').innerHTML = '';
+    eintraege.forEach((eintrag, index) => {
+        const li = document.createElement('li');
+        li.classList.add('eintrag');
+        const min = Math.floor(eintrag.sekunden / 60);
+        const sek = eintrag.sekunden % 60;
+        const sekAnzeige = sek < 10 ? '0' + sek : sek;
+        li.innerHTML = '<span class="rang">' + (index + 1) + '.</span>' +
+                        '<span class="wert">' + eintrag.zuege + ' Züge</span>' +
+                        '<span class="wert">' + min + ':' + sekAnzeige + '</span>';
+        $('#bestenliste-eintraege').appendChild(li);
+    });
 }
+
+
+
+
 
 
 
@@ -269,6 +305,8 @@ pairs.forEach((bild) => {
                     if (gefundeneKarten === pairs.length) {
                         // 🎉 Alle Paare gefunden – Spiel gewonnen!
                         clearInterval(timerInterval); // Timer stoppen
+                        score(); // Bestenlisten-Eintrag
+                        bestenlisteAnzeigen();
                         const minuten = Math.floor(sekunden / 60);
                         const sek = sekunden % 60;
                         const sekAnzeige = sek < 10 ? '0' + sek : sek;
@@ -324,3 +362,7 @@ pairs.forEach((bild) => {
 $('#new_game').addEventListener('click', () => {
     location.reload();
 });
+
+
+// Anzeige der Bestenliste
+bestenlisteAnzeigen();
